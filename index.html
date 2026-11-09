@@ -1,0 +1,1273 @@
+
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#ff762e">
+<title>TezKomek — Yaxınlıqda kömək tap</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+:root {
+  --orange:#ff762e;
+  --orange2:#ff945b;
+  --dark:#202a36;
+  --muted:#87909b;
+  --bg:#f6f7f9;
+  --white:#fff;
+  --green:#20b66a;
+  --border:#edf0f3;
+  --shadow:0 12px 40px rgba(30,40,55,.07);
+  --radius:20px;
+}
+
+* {box-sizing:border-box;margin:0;padding:0}
+
+body {
+  font-family:'DM Sans',sans-serif;
+  background:var(--bg);
+  color:var(--dark);
+  min-height:100vh;
+}
+
+button,input,textarea,select {font:inherit}
+button {cursor:pointer}
+a {text-decoration:none;color:inherit}
+
+.topbar {
+  height:76px;
+  background:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 6%;
+  border-bottom:1px solid var(--border);
+  position:sticky;
+  top:0;
+  z-index:50;
+}
+
+.logo {
+  display:flex;
+  align-items:center;
+  gap:11px;
+  font-family:Manrope,sans-serif;
+  font-size:24px;
+  font-weight:800;
+  letter-spacing:-1.3px;
+}
+
+.logo-icon {
+  width:43px;height:43px;
+  border-radius:14px;
+  background:linear-gradient(135deg,var(--orange),#ff9b54);
+  color:white;
+  display:grid;
+  place-items:center;
+  font-size:20px;
+  box-shadow:0 6px 15px #ff762e45;
+}
+
+.logo span {color:var(--orange)}
+
+.top-links {
+  display:flex;
+  align-items:center;
+  gap:30px;
+  font-size:14px;
+  color:#68717e;
+  font-weight:600;
+}
+
+.top-links a:hover {color:var(--orange)}
+
+.top-actions {
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.btn {
+  border:0;
+  border-radius:13px;
+  padding:12px 18px;
+  font-weight:700;
+  transition:.2s;
+}
+
+.btn:hover {transform:translateY(-2px)}
+
+.btn-primary {
+  color:#fff;
+  background:var(--orange);
+  box-shadow:0 6px 15px #ff762e35;
+}
+
+.btn-light {background:#fff4ed;color:var(--orange)}
+
+.avatar {
+  width:42px;height:42px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  background:#fff0e7;
+  color:var(--orange);
+  font-weight:800;
+}
+
+.hero {
+  padding:62px 6% 45px;
+  background:
+    radial-gradient(circle at 90% 10%,#ffb17b33,transparent 30%),
+    linear-gradient(115deg,#fff 20%,#fff8f3 100%);
+  overflow:hidden;
+}
+
+.hero-inner {
+  max-width:1250px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:1.15fr .85fr;
+  align-items:center;
+  gap:50px;
+}
+
+.eyebrow {
+  display:inline-flex;
+  gap:8px;
+  align-items:center;
+  background:#fff0e6;
+  color:#e96a24;
+  border-radius:30px;
+  padding:9px 14px;
+  font-size:12px;
+  font-weight:800;
+  margin-bottom:22px;
+}
+
+.hero h1 {
+  font-family:Manrope,sans-serif;
+  font-size:clamp(38px,5vw,66px);
+  line-height:1.09;
+  letter-spacing:-3px;
+  font-weight:800;
+  max-width:650px;
+}
+
+.hero h1 span {color:var(--orange)}
+
+.hero p {
+  color:#78818e;
+  font-size:16px;
+  line-height:1.8;
+  margin:22px 0 27px;
+  max-width:520px;
+}
+
+.hero-buttons {display:flex;gap:12px;flex-wrap:wrap}
+
+.hero-buttons button {padding:15px 22px}
+
+.hero-visual {
+  position:relative;
+  min-height:320px;
+  display:grid;
+  place-items:center;
+}
+
+.visual-circle {
+  width:300px;height:300px;
+  border-radius:50%;
+  background:linear-gradient(135deg,#ff8d4d,#ffb57c);
+  display:grid;
+  place-items:center;
+  color:white;
+  font-size:110px;
+  box-shadow:0 25px 60px #ff762e38;
+}
+
+.float-card {
+  position:absolute;
+  background:white;
+  border-radius:17px;
+  padding:14px 17px;
+  box-shadow:var(--shadow);
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font-size:12px;
+  font-weight:700;
+  animation:float 4s ease-in-out infinite;
+}
+
+.float-card i {
+  width:36px;height:36px;
+  border-radius:12px;
+  display:grid;
+  place-items:center;
+  background:#fff0e6;
+  color:var(--orange);
+  font-size:16px;
+}
+
+.float-one {top:22px;left:0}
+.float-two {bottom:35px;right:0;animation-delay:1s}
+
+@keyframes float {
+  0%,100% {transform:translateY(0)}
+  50% {transform:translateY(-10px)}
+}
+
+.container {max-width:1250px;margin:auto;padding:0 6%}
+
+.stats {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
+  margin-top:30px;
+  max-width:530px;
+}
+
+.stat strong {font-size:23px;font-weight:800}
+.stat span {display:block;color:var(--muted);font-size:12px;margin-top:4px}
+
+.main {padding-top:42px;padding-bottom:100px}
+
+.location-bar {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+  flex-wrap:wrap;
+  margin-bottom:30px;
+}
+
+.location-info {
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.location-icon {
+  width:43px;height:43px;
+  background:#fff0e6;
+  color:var(--orange);
+  border-radius:14px;
+  display:grid;
+  place-items:center;
+}
+
+.location-info small {color:var(--muted);font-size:11px}
+.location-info strong {display:block;font-size:14px;margin-top:3px}
+
+.radius {
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:11px 14px;
+  background:#fff;
+  color:var(--dark);
+  outline:none;
+}
+
+.section-head {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+  margin:28px 0 18px;
+}
+
+.section-head h2 {
+  font-family:Manrope,sans-serif;
+  font-size:22px;
+  letter-spacing:-.7px;
+}
+
+.section-head p {color:var(--muted);font-size:12px;margin-top:5px}
+
+.categories {
+  display:grid;
+  grid-template-columns:repeat(8,1fr);
+  gap:12px;
+}
+
+.category {
+  border:1px solid var(--border);
+  background:white;
+  border-radius:17px;
+  padding:17px 5px;
+  text-align:center;
+  transition:.2s;
+}
+
+.category:hover,.category.active {
+  border-color:#ffb27e;
+  background:#fff7f1;
+  transform:translateY(-3px);
+}
+
+.category-icon {
+  width:46px;height:46px;
+  display:grid;
+  place-items:center;
+  border-radius:15px;
+  margin:0 auto 10px;
+  background:#fff0e7;
+  color:var(--orange);
+  font-size:19px;
+}
+
+.category span {font-size:11px;font-weight:700;display:block}
+
+.search-row {
+  display:flex;
+  gap:12px;
+  margin-top:30px;
+}
+
+.search-box {
+  background:white;
+  border:1px solid var(--border);
+  border-radius:15px;
+  padding:0 17px;
+  display:flex;
+  align-items:center;
+  flex:1;
+  gap:12px;
+  min-width:0;
+}
+
+.search-box i {color:#a2aab3}
+
+.search-box input {
+  border:0;
+  outline:0;
+  padding:16px 0;
+  width:100%;
+  background:transparent;
+}
+
+.filter-btn {
+  background:white;
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:0 18px;
+  color:var(--dark);
+}
+
+.filter-btn.active {background:#fff0e7;color:var(--orange)}
+
+.task-grid {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+
+.task-card {
+  background:white;
+  border:1px solid var(--border);
+  border-radius:19px;
+  padding:19px;
+  transition:.25s;
+  position:relative;
+  overflow:hidden;
+}
+
+.task-card:hover {
+  transform:translateY(-5px);
+  box-shadow:var(--shadow);
+  border-color:#ffd1b5;
+}
+
+.task-top {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:15px;
+}
+
+.tag {
+  font-size:10px;
+  font-weight:800;
+  padding:7px 10px;
+  border-radius:20px;
+  background:#f0f3f6;
+  color:#6c7784;
+}
+
+.tag.urgent {background:#fff0eb;color:#ed573c}
+
+.favorite {
+  border:0;
+  background:transparent;
+  color:#adb5bf;
+  font-size:17px;
+}
+
+.favorite.selected {color:#ed573c}
+
+.task-card h3 {
+  font-size:16px;
+  line-height:1.45;
+  margin-bottom:8px;
+  min-height:45px;
+}
+
+.task-description {
+  font-size:12px;
+  color:var(--muted);
+  line-height:1.6;
+  min-height:40px;
+}
+
+.task-meta {
+  display:flex;
+  gap:14px;
+  flex-wrap:wrap;
+  color:#87909b;
+  font-size:11px;
+  margin:17px 0;
+}
+
+.task-meta i {color:var(--orange);margin-right:4px}
+
+.task-bottom {
+  border-top:1px solid var(--border);
+  padding-top:15px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.price {font-size:19px;font-weight:800}
+.price small {font-size:10px;color:var(--muted);font-weight:500}
+
+.contact-btn {
+  border:0;
+  padding:10px 13px;
+  background:#eaf9f0;
+  color:#169a56;
+  border-radius:11px;
+  font-size:11px;
+  font-weight:800;
+}
+
+.contact-btn:hover {background:var(--green);color:white}
+
+.empty {
+  display:none;
+  background:white;
+  border-radius:20px;
+  padding:55px 20px;
+  text-align:center;
+  color:var(--muted);
+}
+
+.empty i {font-size:38px;color:#ffc39e;margin-bottom:15px}
+.empty h3 {color:var(--dark);margin-bottom:8px}
+
+.map-section {
+  margin-top:50px;
+  background:#fff;
+  padding:25px;
+  border-radius:22px;
+  border:1px solid var(--border);
+}
+
+.map-placeholder {
+  height:280px;
+  border-radius:17px;
+  background:
+    linear-gradient(45deg,transparent 47%,#ffffff 48%,#ffffff 51%,transparent 52%),
+    linear-gradient(-45deg,transparent 47%,#ffffff 48%,#ffffff 51%,transparent 52%),
+    #eaf0e8;
+  background-size:80px 80px;
+  position:relative;
+  overflow:hidden;
+  display:grid;
+  place-items:center;
+}
+
+.map-label {
+  background:white;
+  padding:12px 18px;
+  border-radius:12px;
+  box-shadow:var(--shadow);
+  font-weight:700;
+  font-size:13px;
+  color:#68717e;
+}
+
+.map-pin {
+  position:absolute;
+  color:var(--orange);
+  font-size:26px;
+  filter:drop-shadow(0 3px 3px #0002);
+}
+
+.how {
+  margin-top:55px;
+  background:#202a36;
+  color:white;
+  padding:42px;
+  border-radius:25px;
+}
+
+.how h2 {
+  font-family:Manrope,sans-serif;
+  font-size:28px;
+  margin-bottom:30px;
+}
+
+.steps {
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:20px;
+}
+
+.step {
+  background:#ffffff0c;
+  border:1px solid #ffffff17;
+  border-radius:17px;
+  padding:22px;
+}
+
+.step i {font-size:24px;color:#ff995e;margin-bottom:20px}
+.step strong {display:block;margin-bottom:8px}
+.step p {font-size:12px;line-height:1.7;color:#b4bdc8}
+
+.footer {
+  background:#fff;
+  padding:35px 6%;
+  border-top:1px solid var(--border);
+}
+
+.footer-inner {
+  max-width:1250px;
+  margin:auto;
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  flex-wrap:wrap;
+  color:var(--muted);
+  font-size:12px;
+}
+
+.footer b {color:var(--dark)}
+
+.modal-backdrop {
+  position:fixed;
+  inset:0;
+  background:#151e2c99;
+  backdrop-filter:blur(5px);
+  z-index:100;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:15px;
+}
+
+.modal-backdrop.show {display:flex}
+
+.modal {
+  width:100%;
+  max-width:520px;
+  max-height:90vh;
+  overflow:auto;
+  background:white;
+  border-radius:23px;
+  padding:27px;
+  animation:appear .2s ease;
+}
+
+@keyframes appear {
+  from {opacity:0;transform:translateY(15px)}
+  to {opacity:1;transform:translateY(0)}
+}
+
+.modal-head {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:22px;
+}
+
+.modal-head h2 {font-family:Manrope;font-size:23px}
+
+.close {
+  border:0;
+  background:#f2f3f5;
+  width:35px;height:35px;
+  border-radius:50%;
+}
+
+.form-group {margin-bottom:16px}
+
+.form-group label {
+  display:block;
+  font-size:12px;
+  font-weight:700;
+  margin-bottom:8px;
+}
+
+.form-group input,.form-group textarea,.form-group select {
+  width:100%;
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:13px;
+  outline:none;
+  background:#fafbfc;
+}
+
+.form-group input:focus,.form-group textarea:focus {
+  border-color:var(--orange);
+}
+
+.form-group textarea {resize:vertical;min-height:90px}
+
+.form-submit {width:100%;padding:15px}
+
+.bottom-nav {display:none}
+
+.toast {
+  position:fixed;
+  bottom:30px;
+  right:25px;
+  z-index:200;
+  background:#202a36;
+  color:white;
+  border-radius:13px;
+  padding:14px 20px;
+  font-size:13px;
+  box-shadow:var(--shadow);
+  opacity:0;
+  transform:translateY(15px);
+  transition:.3s;
+  pointer-events:none;
+}
+
+.toast.show {opacity:1;transform:translateY(0)}
+
+@media(max-width:950px) {
+  .hero-inner {grid-template-columns:1fr .7fr}
+  .categories {grid-template-columns:repeat(4,1fr)}
+  .task-grid {grid-template-columns:repeat(2,1fr)}
+  .top-links {gap:15px}
+}
+
+@media(max-width:650px) {
+  .topbar {height:65px;padding:0 18px}
+  .top-links {display:none}
+  .top-actions .btn {display:none}
+  .hero {padding:45px 20px 35px}
+  .hero-inner {grid-template-columns:1fr}
+  .hero h1 {font-size:43px;letter-spacing:-2px}
+  .hero-visual {min-height:230px}
+  .visual-circle {width:190px;height:190px;font-size:70px}
+  .float-one {left:0;top:0}
+  .float-two {right:0;bottom:0}
+  .container {padding:0 18px}
+  .categories {grid-template-columns:repeat(4,1fr);gap:9px}
+  .category {padding:13px 3px}
+  .category-icon {width:39px;height:39px}
+  .category span {font-size:10px}
+  .task-grid {grid-template-columns:1fr}
+  .search-row {gap:7px}
+  .filter-btn {padding:0 12px}
+  .steps {grid-template-columns:1fr 1fr}
+  .how {padding:25px 19px}
+  .map-section {padding:15px}
+  .bottom-nav {
+    display:flex;
+    position:fixed;
+    bottom:0;left:0;right:0;
+    z-index:60;
+    background:#fff;
+    border-top:1px solid var(--border);
+    padding:10px 8px calc(10px + env(safe-area-inset-bottom));
+    justify-content:space-around;
+  }
+  .nav-item {
+    border:0;
+    background:none;
+    color:#929ba5;
+    display:flex;
+    flex-direction:column;
+    gap:5px;
+    align-items:center;
+    font-size:10px;
+    font-weight:700;
+  }
+  .nav-item i {font-size:19px}
+  .nav-item.active {color:var(--orange)}
+  .nav-create {
+    background:var(--orange);
+    color:white;
+    width:47px;height:40px;
+    border-radius:14px;
+    display:grid;
+    place-items:center;
+    font-size:19px;
+    box-shadow:0 5px 15px #ff762e55;
+  }
+  .main {padding-top:25px}
+  .footer {padding-bottom:95px}
+}
+</style>
+</head>
+
+<body>
+
+<header class="topbar">
+  <a href="#" class="logo">
+    <div class="logo-icon"><i class="fa-solid fa-handshake-angle"></i></div>
+    Tez<span>Komek</span>
+  </a>
+
+  <nav class="top-links">
+    <a href="#home">Ana səhifə</a>
+    <a href="#categories">Kateqoriyalar</a>
+    <a href="#tasks">Elanlar</a>
+    <a href="#how">Necə işləyir?</a>
+  </nav>
+
+  <div class="top-actions">
+    <button class="btn btn-light" onclick="showToast('Profil bölməsi demo rejimindədir')">
+      <i class="fa-regular fa-user"></i> Daxil ol
+    </button>
+    <button class="btn btn-primary" onclick="openModal()">
+      <i class="fa-solid fa-plus"></i> Elan yerləşdir
+    </button>
+    <div class="avatar">TK</div>
+  </div>
+</header>
+
+<section class="hero" id="home">
+  <div class="hero-inner">
+    <div>
+      <div class="eyebrow">
+        <i class="fa-solid fa-bolt"></i>
+        Yaxınlığında kömək həmişə var
+      </div>
+
+      <h1>
+        Köməyə ehtiyacın var?
+        <span>Tez tap!</span>
+      </h1>
+
+      <p>
+        Gündəlik kiçik işlər üçün yaxınlığında kömək edə biləcək
+        insanları tap. Elan yerləşdir, əlaqə qur və işini asanlaşdır.
+      </p>
+
+      <div class="hero-buttons">
+        <button class="btn btn-primary" onclick="document.querySelector('#tasks').scrollIntoView({behavior:'smooth'})">
+          Kömək tap <i class="fa-solid fa-arrow-right"></i>
+        </button>
+        <button class="btn btn-light" onclick="openModal()">
+          <i class="fa-solid fa-plus"></i> Elan yerləşdir
+        </button>
+      </div>
+
+      <div class="stats">
+        <div class="stat"><strong>01</strong><span>Elan yerləşdir</span></div>
+        <div class="stat"><strong>02</strong><span>Yaxınlıqda tap</span></div>
+        <div class="stat"><strong>03</strong><span>Əlaqə qur</span></div>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="visual-circle">
+        <i class="fa-solid fa-people-arrows-left-right"></i>
+      </div>
+      <div class="float-card float-one">
+        <i class="fa-solid fa-location-dot"></i>
+        <div>Yaxınlığında<br><span style="color:#20b66a">kömək mövcuddur</span></div>
+      </div>
+      <div class="float-card float-two">
+        <i class="fa-solid fa-bolt"></i>
+        <div>Sadə. Sürətli.<br>Rahat.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<main class="container main">
+
+  <div class="location-bar">
+    <div class="location-info">
+      <div class="location-icon"><i class="fa-solid fa-location-dot"></i></div>
+      <div>
+        <small>Sənin axtarış ərazin</small>
+        <strong>Bakı, Azərbaycan</strong>
+      </div>
+    </div>
+
+    <select class="radius" id="radius">
+      <option value="1">1 km radius</option>
+      <option value="3" selected>3 km radius</option>
+      <option value="5">5 km radius</option>
+      <option value="10">10 km radius</option>
+    </select>
+  </div>
+
+  <div class="section-head" id="categories">
+    <div>
+      <h2>Kateqoriyalar</h2>
+      <p>Hansı iş üçün kömək axtarırsan?</p>
+    </div>
+    <button class="btn btn-light" onclick="filterCategory('all')">Hamısı</button>
+  </div>
+
+  <div class="categories">
+    <button class="category" onclick="filterCategory('Alış-veriş',this)">
+      <div class="category-icon"><i class="fa-solid fa-basket-shopping"></i></div>
+      <span>Alış-veriş</span>
+    </button>
+
+    <button class="category" onclick="filterCategory('Daşıma',this)">
+      <div class="category-icon"><i class="fa-solid fa-truck"></i></div>
+      <span>Daşıma</span>
+    </button>
+
+    <button class="category" onclick="filterCategory('Sənəd işləri',this)">
+      <div class="category-icon"><i class="fa-solid fa-file-lines"></i></div>
+      <span>Sənəd işləri</span>
+    </button>
+
+    <button class="category" onclick="filterCategory('Ev heyvanları',this)">
+      <div class="category-icon"><i class="fa-solid fa-paw"></i></div>
+      <span>Ev heyvanları</span>
+    </button>
+
+    <button class="category" onclick="filterCategory('Təmir',this)">
+      <div class="category-icon"><i class="fa-solid fa-screwdriver-wrench"></i></div>
+      <span>Təmir</span>
+    </button>
+
+    <button class="category" onclick="filterCategory('Aparıb-gətirmə',this)">
+      <div class="category-icon"><i class="fa-solid fa-car"></i></div>
+      <span>Yol köməyi</span>
+    </button>
+
+    <button class="category" onclick="filterCategory('Məsləhət',this)">
+      <div class="category-icon"><i class="fa-solid fa-lightbulb"></i></div>
+      <span>Məsləhət</span>
+    </button>
+
+    <button class="category" onclick="filterCategory('Digər',this)">
+      <div class="category-icon"><i class="fa-solid fa-ellipsis"></i></div>
+      <span>Digər</span>
+    </button>
+  </div>
+
+  <div class="section-head" id="tasks">
+    <div>
+      <h2>Yaxınlıqdakı elanlar</h2>
+      <p>Ətrafındakı aktual kömək ehtiyacları</p>
+    </div>
+    <span style="color:#20b66a;font-size:12px;font-weight:700">
+      <i class="fa-solid fa-circle" style="font-size:7px"></i>
+      Demo məlumatlar
+    </span>
+  </div>
+
+  <div class="search-row">
+    <div class="search-box">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input id="search" placeholder="Nə axtarırsan?">
+    </div>
+    <button class="filter-btn" id="urgentFilter" onclick="toggleUrgent()">
+      <i class="fa-solid fa-bolt"></i> Təcili
+    </button>
+  </div>
+
+  <div class="task-grid" id="taskGrid"></div>
+
+  <div class="empty" id="empty">
+    <i class="fa-regular fa-face-smile"></i>
+    <h3>Hələlik elan tapılmadı</h3>
+    <p>Axtarış şərtlərini dəyişərək yenidən yoxla.</p>
+  </div>
+
+  <section class="map-section" id="map">
+    <div class="section-head" style="margin-top:0">
+      <div>
+        <h2><i class="fa-solid fa-map-location-dot" style="color:#ff762e"></i> Xəritə görünüşü</h2>
+        <p>Yaxınlığındakı kömək elanlarını xəritədə kəşf et</p>
+      </div>
+      <button class="btn btn-light" onclick="showToast('Real xəritə üçün xəritə API inteqrasiyası lazımdır')">
+        Xəritəni aç
+      </button>
+    </div>
+
+    <div class="map-placeholder">
+      <i class="fa-solid fa-location-dot map-pin" style="top:22%;left:25%"></i>
+      <i class="fa-solid fa-location-dot map-pin" style="top:55%;left:70%"></i>
+      <i class="fa-solid fa-location-dot map-pin" style="top:70%;left:39%"></i>
+      <i class="fa-solid fa-location-dot map-pin" style="top:28%;left:78%"></i>
+      <div class="map-label">
+        <i class="fa-solid fa-map"></i>
+        Xəritə inteqrasiyası gözləyir
+      </div>
+    </div>
+  </section>
+
+  <section class="how" id="how">
+    <h2>TezKomek necə işləyir?</h2>
+    <div class="steps">
+      <div class="step">
+        <i class="fa-solid fa-pen-to-square"></i>
+        <strong>01. Elan yerləşdir</strong>
+        <p>Ehtiyacını, məkanını və vaxtını qeyd et.</p>
+      </div>
+      <div class="step">
+        <i class="fa-solid fa-location-crosshairs"></i>
+        <strong>02. Yaxınlıqda tap</strong>
+        <p>Elanını ətrafındakı insanlarla paylaş.</p>
+      </div>
+      <div class="step">
+        <i class="fa-brands fa-whatsapp"></i>
+        <strong>03. Əlaqə qur</strong>
+        <p>WhatsApp və ya telefonla əlaqə saxla.</p>
+      </div>
+      <div class="step">
+        <i class="fa-solid fa-handshake"></i>
+        <strong>04. Razılaş</strong>
+        <p>Tapşırığın şərtlərini birbaşa müəyyən et.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="logo" style="font-size:20px">
+        <div class="logo-icon" style="width:35px;height:35px;font-size:16px">
+          <i class="fa-solid fa-handshake-angle"></i>
+        </div>
+        Tez<span>Komek</span>
+      </div>
+      <p style="margin-top:10px">Kiçik kömək. Sürətli əlaqə. Daha rahat gündəlik həyat.</p>
+    </div>
+    <div>
+      <b>TezKomek © 2026</b>
+      <p style="margin-top:8px">Bütün hüquqlar qorunur.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ELAN YARATMA MODALI -->
+
+<div class="modal-backdrop" id="modal">
+  <div class="modal">
+    <div class="modal-head">
+      <h2>Yeni elan yerləşdir</h2>
+      <button class="close" onclick="closeModal()">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <form id="taskForm">
+      <div class="form-group">
+        <label>Kateqoriya</label>
+        <select id="newCategory" required>
+          <option value="">Kateqoriya seç</option>
+          <option>Alış-veriş</option>
+          <option>Daşıma</option>
+          <option>Sənəd işləri</option>
+          <option>Ev heyvanları</option>
+          <option>Təmir</option>
+          <option>Aparıb-gətirmə</option>
+          <option>Məsləhət</option>
+          <option>Digər</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Elanın başlığı</label>
+        <input id="newTitle" maxlength="70" placeholder="Məsələn: Marketdən alış-veriş lazımdır" required>
+      </div>
+
+      <div class="form-group">
+        <label>Ətraflı təsvir</label>
+        <textarea id="newDescription" maxlength="500" placeholder="Nə üçün köməyə ehtiyacın var?" required></textarea>
+      </div>
+
+      <div class="form-group">
+        <label>Məkan / Rayon</label>
+        <input id="newLocation" placeholder="Məsələn: Nərimanov" required>
+      </div>
+
+      <div class="form-group">
+        <label>Əlaqə nömrəsi</label>
+        <input id="newPhone" type="tel" placeholder="+994501234567" required>
+      </div>
+
+      <div class="form-group">
+        <label>Təklif olunan məbləğ (AZN)</label>
+        <input id="newPrice" type="number" min="0" placeholder="Məsələn: 5">
+      </div>
+
+      <div class="form-group">
+        <label>Vaxt</label>
+        <select id="newTime">
+          <option>İndi (1 saat)</option>
+          <option>Bu gün</option>
+          <option>Bu həftə</option>
+        </select>
+      </div>
+
+      <button class="btn btn-primary form-submit" type="submit">
+        <i class="fa-solid fa-paper-plane"></i> Elanı yerləşdir
+      </button>
+    </form>
+  </div>
+</div>
+
+<nav class="bottom-nav">
+  <button class="nav-item active" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    <i class="fa-solid fa-house"></i>Ana səhifə
+  </button>
+  <button class="nav-item" onclick="document.querySelector('#map').scrollIntoView({behavior:'smooth'})">
+    <i class="fa-solid fa-map"></i>Xəritə
+  </button>
+  <button class="nav-item" onclick="openModal()">
+    <span class="nav-create"><i class="fa-solid fa-plus"></i></span>
+    Elan ver
+  </button>
+  <button class="nav-item" onclick="showFavorites()">
+    <i class="fa-regular fa-heart"></i>Favoritlər
+  </button>
+  <button class="nav-item" onclick="showToast('Profil demo rejimindədir')">
+    <i class="fa-regular fa-user"></i>Profil
+  </button>
+</nav>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const demoTasks = [
+ {
+  id:1,category:"Alış-veriş",title:"Aptekdən dərman gətirilsin",
+  description:"Yaxınlıqdakı aptekdən bir neçə məhsul gətirilməlidir.",
+  location:"Nərimanov",distance:"1.2 km",price:5,
+  time:"İndi",urgent:true,phone:"994501234567"
+ },
+ {
+  id:2,category:"Daşıma",title:"Mebelin daşınmasına kömək lazımdır",
+  description:"Bir neçə qutunun və kiçik mebelin daşınmasına kömək axtarıram.",
+  location:"Gənclik",distance:"2.1 km",price:15,
+  time:"Bu gün",urgent:false,phone:"994501234567"
+ },
+ {
+  id:3,category:"Təmir",title:"Masa yığılmasına kömək",
+  description:"Yeni alınmış masanın yığılması üçün kömək lazımdır.",
+  location:"28 May",distance:"2.7 km",price:10,
+  time:"Bu gün",urgent:false,phone:"994501234567"
+ },
+ {
+  id:4,category:"Sənəd işləri",title:"Sənəd çatdırılmalıdır",
+  description:"Sənədin yaxınlıqdakı ünvana çatdırılması lazımdır.",
+  location:"Nəsimi",distance:"3.2 km",price:7,
+  time:"İndi",urgent:true,phone:"994501234567"
+ },
+ {
+  id:5,category:"Ev heyvanları",title:"Pişiyə qısa müddət baxış",
+  description:"Bir neçə saatlıq pişiyə nəzarət etmək üçün kömək axtarıram.",
+  location:"Yasamal",distance:"4 km",price:12,
+  time:"Bu gün",urgent:false,phone:"994501234567"
+ },
+ {
+  id:6,category:"Məsləhət",title:"Kompüterdə kömək lazımdır",
+  description:"Proqram quraşdırılması və sadə kompüter dəstəyi.",
+  location:"Elmlər Akademiyası",distance:"1.8 km",price:0,
+  time:"Bu həftə",urgent:false,phone:"994501234567"
+ }
+];
+
+let tasks = [...demoTasks];
+let favorites = [];
+let activeCategory = "all";
+let urgentOnly = false;
+let favoriteOnly = false;
+
+const grid = document.getElementById("taskGrid");
+
+function renderTasks() {
+ const search = document.getElementById("search").value.toLowerCase();
+
+ let filtered = tasks.filter(task => {
+  const matchSearch =
+   task.title.toLowerCase().includes(search) ||
+   task.description.toLowerCase().includes(search) ||
+   task.location.toLowerCase().includes(search);
+
+  const matchCategory =
+   activeCategory === "all" || task.category === activeCategory;
+
+  const matchUrgent = !urgentOnly || task.urgent;
+  const matchFavorite = !favoriteOnly || favorites.includes(task.id);
+
+  return matchSearch && matchCategory && matchUrgent && matchFavorite;
+ });
+
+ grid.innerHTML = filtered.map(task => `
+  <article class="task-card">
+   <div class="task-top">
+    <span class="tag ${task.urgent?'urgent':''}">
+     ${task.urgent?'⚡ TƏCİLİ':task.category}
+    </span>
+    <button class="favorite ${favorites.includes(task.id)?'selected':''}"
+     onclick="toggleFavorite(${task.id})">
+     <i class="fa-${favorites.includes(task.id)?'solid':'regular'} fa-heart"></i>
+    </button>
+   </div>
+
+   <h3>${escapeHTML(task.title)}</h3>
+   <p class="task-description">${escapeHTML(task.description)}</p>
+
+   <div class="task-meta">
+    <span><i class="fa-solid fa-location-dot"></i>${escapeHTML(task.location)}</span>
+    <span><i class="fa-solid fa-route"></i>${escapeHTML(task.distance || '—')}</span>
+    <span><i class="fa-regular fa-clock"></i>${escapeHTML(task.time)}</span>
+   </div>
+
+   <div class="task-bottom">
+    <div class="price">
+     ${task.price>0?task.price+' AZN':'Razılaşarıq'}
+     <small>${task.price>0?'təklif':' '}</small>
+    </div>
+    <button class="contact-btn" onclick="contactTask(${task.id})">
+     <i class="fa-brands fa-whatsapp"></i> Əlaqə
+    </button>
+   </div>
+  </article>
+ `).join("");
+
+ document.getElementById("empty").style.display =
+  filtered.length ? "none" : "block";
+}
+
+function escapeHTML(value) {
+ return String(value).replace(/[&<>"']/g, char => ({
+  '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+ }[char]));
+}
+
+function filterCategory(category,element) {
+ activeCategory = category === "all" ? "all" : category;
+ favoriteOnly = false;
+ document.querySelectorAll(".category").forEach(el=>el.classList.remove("active"));
+ if(element) element.classList.add("active");
+ renderTasks();
+ document.getElementById("tasks").scrollIntoView({behavior:"smooth"});
+}
+
+function toggleUrgent() {
+ urgentOnly = !urgentOnly;
+ document.getElementById("urgentFilter").classList.toggle("active",urgentOnly);
+ renderTasks();
+}
+
+function toggleFavorite(id) {
+ favorites = favorites.includes(id)
+  ? favorites.filter(item=>item!==id)
+  : [...favorites,id];
+ renderTasks();
+}
+
+function showFavorites() {
+ favoriteOnly = !favoriteOnly;
+ activeCategory = "all";
+ urgentOnly = false;
+ renderTasks();
+ document.getElementById("tasks").scrollIntoView({behavior:"smooth"});
+ showToast(favoriteOnly?'Favorit elanlar':'Bütün elanlar');
+}
+
+function contactTask(id) {
+ const task = tasks.find(t=>t.id===id);
+ if(!task || !/^\d{10,15}$/.test(task.phone)) {
+  showToast("Əlaqə nömrəsi mövcud deyil");
+  return;
+ }
+ const message = encodeURIComponent("Salam, "+task.title+" elanı üçün kömək edə bilərəm.");
+ window.open("https://wa.me/"+task.phone+"?text="+message,"_blank");
+}
+
+function openModal() {
+ document.getElementById("modal").classList.add("show");
+}
+
+function closeModal() {
+ document.getElementById("modal").classList.remove("show");
+}
+
+document.getElementById("modal").addEventListener("click",e=>{
+ if(e.target.id==="modal") closeModal();
+});
+
+document.getElementById("search").addEventListener("input",renderTasks);
+
+document.getElementById("taskForm").addEventListener("submit",e=>{
+ e.preventDefault();
+
+ const category=document.getElementById("newCategory").value;
+ const title=document.getElementById("newTitle").value.trim();
+ const description=document.getElementById("newDescription").value.trim();
+ const location=document.getElementById("newLocation").value.trim();
+ const phone=document.getElementById("newPhone").value.replace(/\D/g,"");
+ const price=Number(document.getElementById("newPrice").value)||0;
+ const time=document.getElementById("newTime").value;
+
+ if(!category || !title || !description || !location || !phone) {
+  showToast("Bütün məcburi sahələri doldur");
+  return;
+ }
+
+ if(!/^\d{10,15}$/.test(phone)) {
+  showToast("Telefon nömrəsini beynəlxalq formatda daxil et");
+  return;
+ }
+
+ const newTask={
+  id:Date.now(),
+  category,title,description,location,phone,price,time,
+  distance:"Məsafə hesablanmayıb",
+  urgent:time==="İndi (1 saat)"
+ };
+
+ tasks.unshift(newTask);
+ activeCategory="all";
+ urgentOnly=false;
+ favoriteOnly=false;
+ document.getElementById("search").value="";
+ document.getElementById("urgentFilter").classList.remove("active");
+
+ renderTasks();
+ closeModal();
+ e.target.reset();
+ showToast("Demo elanı siyahıya əlavə edildi!");
+ document.getElementById("tasks").scrollIntoView({behavior:"smooth"});
+});
+
+function showToast(message) {
+ const toast=document.getElementById("toast");
+ toast.textContent=message;
+ toast.classList.add("show");
+ clearTimeout(window.toastTimeout);
+ window.toastTimeout=setTimeout(()=>toast.classList.remove("show"),2800);
+}
+
+renderTasks();
+</script>
+
+</body>
+</html>
